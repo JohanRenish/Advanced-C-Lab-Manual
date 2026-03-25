@@ -9,14 +9,42 @@ Algorithm:
 4.	Call the search function and perform other linked list operations as needed.
  
 Program:
-
-//type your code here
-
+```
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* next;
+}*head=NULL;
+void insert(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = head;
+    head = newNode;
+}
+void search(int data) {
+    struct Node* temp = head;
+    int position=0;
+    while (temp != NULL) {
+        if (temp->data == data) {
+            printf("Element %d found at location %d\n",data,position);
+            return;
+        }
+        temp = temp->next;
+        position++;
+    }
+    printf("Element %d not found\n",data);
+}
+int main() {
+    insert(10);
+    insert(20);
+    insert(30);
+    search(20);
+    return 0;
+}
+```
 Output:
-
-//paste your output here
-
-
+<img width="1630" height="331" alt="16" src="https://github.com/user-attachments/assets/34956dd0-d431-4817-b667-d120085fc5df" />
 
 Result:
 Thus, the program to search a given element in the given linked list is verified successfully.
@@ -33,14 +61,47 @@ Algorithm:
 4.	Call the insert function and perform other linked list operations as needed.
  
 Program:
-
-//type your code here
-
+```
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    struct Node*next;
+}*head=NULL;
+void insert(int data){
+    struct Node*newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL){
+        printf("Memory not Allocated\n");
+        return;
+    }
+    newNode->data=data;
+    newNode->next=head;
+    head=newNode;
+}
+void display(){
+    struct Node*temp;
+    if(head==NULL){
+        printf("List is Empty\n");
+        return;
+    }
+    temp=head;
+    while(temp!=NULL){
+        printf("%d->",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL\n");
+}
+int main(){
+    insert(10);
+    insert(20);
+    insert(30);
+    display();
+    return 0;
+}
+```
 Output:
+<img width="1633" height="330" alt="17" src="https://github.com/user-attachments/assets/59eff19a-1124-47fc-b3ef-57be0f6b4a09" />
 
-//paste your output here
-
- 
 Result:
 Thus, the program to insert a node in a linked list is verified successfully.
 
@@ -57,13 +118,50 @@ Algorithm:
 4.	Move to the next node by updating the temp pointer to point to the next node (temp = temp->next).
  
 Program:
+```
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    struct Node*next,*prev;
+};
+struct Node *head=NULL;
 
-//type your code here
-
+void insert(int val){
+    struct Node *newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL){
+        printf("Memory Not Allocated");
+        return;
+    }
+    newNode->data=val;
+    newNode->prev=NULL;
+    newNode->next=head;
+    if(head!=NULL){
+        head->prev=newNode;
+    }
+    head=newNode;
+}
+void display(){
+    struct Node *temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    while(temp!=NULL){
+        printf("%d<->",temp->data);
+        temp=temp->prev;
+    }
+    printf("NULL\n");
+}
+int main(){
+    insert(10);
+    insert(20);
+    insert(30);
+    display();
+    return 0;
+}
+```
 Output:
-
-//paste your output here
-
+<img width="1627" height="330" alt="18" src="https://github.com/user-attachments/assets/1ebcdc67-4aef-4c2e-80c6-a2d966c02aa5" />
 
 Result:
 Thus, the program to traverse a doubly linked list is verified successfully. 
@@ -82,13 +180,47 @@ Algorithm:
 5.	Set the new node's prev pointer to the last node and update the last node's next pointer to the new node.
  
 Program:
+```
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    struct Node*next,*prev;
+};
+struct Node *head=NULL;
 
-//type your code here
-
+void insert(int val){
+    struct Node *newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL){
+        printf("Memory Not Allocated");
+        return;
+    }
+    newNode->data=val;
+    newNode->prev=NULL;
+    newNode->next=head;
+    if(head!=NULL){
+        head->prev=newNode;
+    }
+    head=newNode;
+}
+void display(){
+    struct Node *temp=head;
+    while(temp!=NULL){
+        printf("%d<->",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL\n");
+}
+int main(){
+    insert(10);
+    insert(20);
+    insert(30);
+    display();
+    return 0;
+}
+```
 Output:
-
-//paste your output here
-
+<img width="1636" height="335" alt="19" src="https://github.com/user-attachments/assets/ae591ada-4fee-4641-a0a5-4a5d687beb81" />
 
 Result:
 Thus, the program to insert an element in doubly linked list is verified successfully.
@@ -124,16 +256,65 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 
 Program:
+```
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    struct Node*next,*prev;
+};
+struct Node *head=NULL;
 
-//type your code here
-
+void insert(int val){
+    struct Node *newNode=(struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL){
+        printf("Memory Not Allocated");
+        return;
+    }
+    newNode->data=val;
+    newNode->prev=NULL;
+    newNode->next=head;
+    if(head!=NULL){
+        head->prev=newNode;
+    }
+    head=newNode;
+}
+void delete(){
+    struct Node *temp=head;
+    if(head==NULL){
+        printf("List is Empty");
+        return;
+    }
+    if(temp->next==NULL){
+        free(temp);
+        head=NULL;
+        return;
+    }
+    if(temp->next!=NULL){
+        head=head->next;
+        free(temp);
+    }
+}
+void display(){
+    struct Node *temp=head;
+    while(temp!=NULL){
+        printf("%d<->",temp->data);
+        temp=temp->next;
+    }
+    printf("NULL\n");
+}
+int main(){
+    insert(10);
+    insert(20);
+    insert(30);
+    display();
+    delete();
+    display();
+    return 0;
+}
+```
 Output:
-
-//paste your output here
-
-
-
-
+<img width="1624" height="344" alt="20" src="https://github.com/user-attachments/assets/5c616046-209d-4155-9507-a489b38fa52c" />
 
 Result:
 Thus, the function that deletes a given element from a linked list is verified successfully.
