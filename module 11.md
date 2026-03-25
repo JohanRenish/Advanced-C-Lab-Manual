@@ -12,10 +12,25 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
-
+```
+#include<stdio.h>
+int max_of_four(int ,int ,int ,int);
+int main(){
+    int a,b,c,d;
+    printf("Enter four numbers : ");
+    scanf("%d %d %d %d",&a,&b,&c,&d);
+    int max=max_of_four(a,b,c,d);
+    printf("Maximum is : %d",max);
+    return 0;
+}
+int max_of_four(int a,int b,int c, int d){
+    int max1=(a>b)? a:b;
+    int max2=(c>d)? c:d;
+    return (max1>max2)? max1:max2;
+}
+```
 Output:
-//paste your output here
+<img width="1628" height="333" alt="21" src="https://github.com/user-attachments/assets/fccf8275-5175-45a0-bf2d-0490fe60ce97" />
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -36,10 +51,40 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
-
+```
+#include<stdio.h>
+void max(int ,int);
+int main(){
+    int a,b;
+    printf("Enter m and k : ");
+    scanf("%d %d",&a,&b);
+    max(a,b);
+    return 0;
+}
+void max(int n ,int k){
+    int max_and=0,max_or=0,max_xor=0;
+    int mand,mor,mxor;
+    for(int i=1;i<=n;i++){
+        for(int j=i+1;j<=n;j++){
+            mand=i&j;
+            mor=i|j;
+            mxor=i^j;
+            if(mand<k&&mand>max_and){
+                max_and=mand;
+            }
+            if(mor<k&&mor>max_or){
+                max_or=mor;
+            }
+            if(mxor<k&&mxor>max_xor){
+                max_xor=mxor;
+            }
+        }
+    }
+    printf("%d\n%d\n%d",max_and,max_or,max_xor);
+}
+```
 Output:
-//paste your output here
+<img width="1634" height="340" alt="22" src="https://github.com/user-attachments/assets/a123fad6-db77-4d1f-85a6-d2fc0026ef5a" />
 
 Result:
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
@@ -59,11 +104,48 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+```
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    int total_shelves;
+    printf("Enter number of shelves : ");
+    scanf("%d",&total_shelves);
+    int total_quaries;
+    printf("Enter number of queries : ");
+    scanf("%d",&total_quaries);
+    int *total_books=(int*)calloc(total_shelves,sizeof(int));
+    int **total_pages=(int**)malloc(total_shelves*sizeof(int*));
+    for(int i=0;i<total_shelves;i++){
+        total_pages[i]=NULL;
+    }
+    for(int i=0;i<total_quaries;i++){
+        int type;
+        scanf("%d",&type);
+        if(type==1){
+            int x,y;
+            scanf("%d %d",&x,&y);
+            total_books[x]++; 
+            total_pages[x]=(int*)realloc(total_pages[x],total_books[x]*sizeof(int));
+            total_pages[x][total_books[x]-1]=y;
+        }
+        else if(type==2){
+            int x,y;
+            scanf("%d %d",&x,&y);
+            printf("%d\n",total_pages[x][y]);
+        }
+        else if(type==3){
+            int x;
+            scanf("%d",&x);
+            printf("%d\n",total_books[x]);
+        }
 
+    }
+    return 0;
+}
+```
 Output:
-//paste your output here
-
+<img width="1643" height="335" alt="23" src="https://github.com/user-attachments/assets/90c5f0dd-5ba3-4fe8-8b4b-9ef2cfdaf93e" />
 
 Result:
 Thus, the program to write the logic for the requests is verified successfully.
@@ -86,13 +168,24 @@ Algorithm:
 
 
 Program:
-//type your code here
-
+```
+#include <stdio.h>
+int main() {
+    int n, sum = 0;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+    int a[n];
+    printf("Enter elements:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+        sum += a[i];
+    }
+    printf("Sum = %d\n", sum);
+    return 0;
+}
+```
 Output:
-//paste your output here
-
- 
-
+<img width="1632" height="348" alt="24" src="https://github.com/user-attachments/assets/75d81142-e4fc-45b7-a30c-bbf0bf0fbf68" />
 
 Result:
 Thus, the program prints the sum of the integers in the array is verified successfully.
@@ -118,16 +211,28 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 5.	Display the result: After processing the sentence, output the total word count.
 
 
-
 Program:
-//type your code here
-
+```
+#include <stdio.h>
+int main() {
+    char str[100];
+    int i = 0, count = 0;
+    printf("Enter a sentence:\n");
+    scanf("%[^\n]",str);
+    while (str[i] != '\0') {
+        if((i == 0 && str[i] != ' ' && str[i] != '\n')||(str[i] != ' ' && str[i-1] == ' ')){
+            count++;
+        }
+        i++;
+    }
+    printf("Number of words = %d\n", count);
+    return 0;
+}
+```
 Output:
-//paste your output here
-
-
+<img width="1635" height="336" alt="25" src="https://github.com/user-attachments/assets/e5741379-842a-4b8e-968e-e08cf9238d06" />
 
 Result:
-
+Thus, the program is verified successfully.
 Thus, the program that counts the number of words in a given sentence is verified 
 successfully.
